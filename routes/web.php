@@ -20,7 +20,22 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-route::get('/about', function(){
-    echo "hello from about page";
+Route::get('/about', function(){
     return view('about');
 });
+
+route::get('/articles', function(){
+    return view('articles');
+});
+
+Route::get('/gallery', function(){
+    return view('gallery');
+});
+Route::get('/contact', function(){
+    return view('contact');
+});
+Route::get('/faq', function(){
+    return view('faq');
+});
+
+

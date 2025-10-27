@@ -32,10 +32,10 @@
   @include('headerfooter.header')
 
 
-  <main class="min-h-[60vh] bg-[#0e121c] text-[#d6dfed] p-6 padding-10">
-      <h1 class="text-3xl font-bold underline">Home page</h1>
-      <p class="mt-4">Welcome to the Home page.</p>
-  </main>
+    <main class="min-h-[60vh] bg-[#0e121c] text-[#d6dfed] p-6 padding-10">
+        <h1 class="text-3xl font-bold underline">Articles page</h1>
+        <p class="mt-4">Welcome to the Articles page.</p>
+    </main>
 
   @include('headerfooter.footer')
 

@@ -33,8 +33,8 @@
 
 
   <main class="min-h-[60vh] bg-[#0e121c] text-[#d6dfed] p-6 padding-10">
-      <h1 class="text-3xl font-bold underline">Home page</h1>
-      <p class="mt-4">Welcome to the Home page.</p>
+      <h1 class="text-3xl font-bold underline">FAQ</h1>
+      <p class="mt-4">Welcome to the FAQ page.</p>
   </main>
 
   @include('headerfooter.footer')
