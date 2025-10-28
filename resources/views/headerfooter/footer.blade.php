@@ -2,7 +2,7 @@
        FOOTER — placed as direct child of body
        Uses fixed for SVG wrapper so it anchors to viewport.
        ============================ --}}
-  <footer class="fixed inset-x-0 bottom-0 w-full pb-[100px] flex justify-center items-center pointer-events-auto overflow-visible z-40">
+  <footer class="w-full pb-6 flex flex-col items-center gap-6">
     <!-- SVG wrapper: fixed and extra-wide so it always covers both sides -->
     <div class="fixed left-1/2 -bottom-[69px] -translate-x-1/2 w-[200vw] h-[520px] pointer-events-none -z-10 overflow-visible" aria-hidden="true">
       <svg

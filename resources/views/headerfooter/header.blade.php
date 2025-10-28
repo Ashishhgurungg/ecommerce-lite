@@ -5,12 +5,13 @@
         <a href="/">
           <img src="{{ asset('images/my-logo.svg') }}" alt="My Logo" class="block h-6 w-auto" />
         </a>
-        <a href="/" class="hover:text-blue-600">Home</a>
-        <a href="{{ url('/articles') }}" class="hover:text-blue-600">Articles</a>
-        <a href="{{ url('/about') }}" class="hover:text-blue-600">About</a>
-        <a href="{{ url('/gallery') }}" class="hover:text-blue-600">Gallery</a>
-        <a href="{{ url('/contact') }}" class="hover:text-blue-600">Contact</a>
-        <a href="{{ url('/faq') }}" class="hover:text-blue-600">FAQ</a>
+        <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Home</a>
+        <a href="{{ url('/services') }}" class="{{ request()->is('services') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Services</a>
+        <a href="{{ url('/articles') }}" class="{{ request()->is('articles') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Articles</a>
+        <a href="{{ url('/gallery') }}" class="{{ request()->is('gallery') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Gallery</a>
+        <a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Contact Us</a>
+        <a href="{{ url('/faq') }}" class="{{ request()->is('faq') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">FAQ</a>
+        <a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">About</a>
       </div>
 
       @if (Route::has('login'))

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,4 +39,5 @@ Route::get('/faq', function(){
     return view('faq');
 });
 
+Route::get('/services', [ServiceController::class, 'show']);
 

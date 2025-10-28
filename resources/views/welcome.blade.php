@@ -1,38 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello</title>
+@include('headerfooter.boiler')
 
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-  {{-- Font Awesome (remove if globally included) --}}
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    /* Ensure full overflow visibility and page font */
-    html, body { width: 100%; overflow-x: visible !important; }
-    body { font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background: #0e121c; color: #d6dfed; min-height:100vh; }
-  </style>
-</head>
-
-<body class="antialiased m-0 bg-[#0e121c] text-[#d6dfed]">
-
+<body class="flex flex-col min-h-screen bg-[#0e121c] text-[#d6dfed]">
+  
   @include('headerfooter.header')
-
-
-  <main class="min-h-[60vh] bg-[#0e121c] text-[#d6dfed] p-6 padding-10">
+  <main class="flex-grow p-6">
       <h1 class="text-3xl font-bold underline">Home page</h1>
       <p class="mt-4">Welcome to the Home page.</p>
   </main>
