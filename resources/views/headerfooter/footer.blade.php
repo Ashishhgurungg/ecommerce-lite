@@ -1,71 +1,43 @@
-  {{-- ============================
-       FOOTER — placed as direct child of body
-       Uses fixed for SVG wrapper so it anchors to viewport.
-       ============================ --}}
-  <footer class="w-full pb-6 flex flex-col items-center gap-6">
-    <!-- SVG wrapper: fixed and extra-wide so it always covers both sides -->
-    <div class="fixed left-1/2 -bottom-[69px] -translate-x-1/2 w-[200vw] h-[520px] pointer-events-none -z-10 overflow-visible" aria-hidden="true">
-      <svg
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 1600 900"
-        class="absolute bottom-0 max-h-[520px] min-h-[420px] scale-y-[3] scale-x-[2.25] origin-bottom pointer-events-none"
-        style="width:100%; height:100%;"
-      >
-        <defs>
-          <path id="wave" fill="rgba(11, 89, 255, 0.6)"
-            d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
-            s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
-        </defs>
+<!-- FOOTER: matches header color + light top border -->
+<footer class="w-full py-10 bg-[#1f2937] text-[#d6dfed] border-t border-gray-300/20">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-6">
 
-        <g>
-          <use xlink:href="#wave" opacity=".4">
-            <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="8s"
-              calcMode="spline" values="270 230; -334 180; 270 230" keyTimes="0; .5; 1"
-              keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
-          </use>
+    <!-- small accent bar to match nav active color -->
+    <div class="w-16 h-1 rounded-full bg-[rgba(59,130,246,0.15)]"></div>
 
-          <use xlink:href="#wave" opacity=".6">
-            <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="6s"
-              calcMode="spline" values="-270 230;243 220;-270 230" keyTimes="0; .6; 1"
-              keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
-          </use>
+    <!-- social icons -->
+    <ul class="flex gap-4">
+      <li>
+        <a href="#" class="grid place-items-center w-10 h-10 rounded-full bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(59,130,246,0.12)] transition">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="grid place-items-center w-10 h-10 rounded-full bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(59,130,246,0.12)] transition">
+          <i class="fa-brands fa-codepen text-lg"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="grid place-items-center w-10 h-10 rounded-full bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(59,130,246,0.12)] transition">
+          <i class="fa-brands fa-dribbble text-lg"></i>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="grid place-items-center w-10 h-10 rounded-full bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(59,130,246,0.12)] transition">
+          <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
+      </li>
+    </ul>
 
-          <use xlink:href="#wave" opacty=".9">
-            <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="4s"
-              calcMode="spline" values="0 230;-140 200;0 230" keyTimes="0; .4; 1"
-              keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
-          </use>
-        </g>
-      </svg>
-    </div>
+    <!-- footer nav -->
+    <nav class="flex gap-6 text-sm text-[#b9c7e6]">
+      <a href="#" class="hover:text-white">Home</a>
+      <a href="#" class="hover:text-white">About</a>
+      <a href="#" class="hover:text-white">Portfolio</a>
+      <a href="#" class="hover:text-white">Skills</a>
+      <a href="#" class="hover:text-white">Contact</a>
+    </nav>
 
-    <!-- Footer content -->
-    <section class="flex flex-col items-center gap-[30px] w-full max-w-[1200px] px-4">
-      <ul class="flex gap-[10px] m-0 p-0">
-        <li>
-          <a href="#" class="fa-brands fa-github text-[24px] grid place-items-center w-[40px] h-[40px] rounded-full bg-[rgb(255_255_255_/_0.06)] backdrop-blur-[10px] transition transform hover:scale-105 hover:shadow-[0_6px_18px_rgba(11,89,255,0.12)]"></a>
-        </li>
-        <li>
-          <a href="#" class="fa-brands fa-codepen text-[24px] grid place-items-center w-[40px] h-[40px] rounded-full bg-[rgb(255_255_255_/_0.06)] backdrop-blur-[10px] transition transform hover:scale-105 hover:shadow-[0_6px_18px_rgba(11,89,255,0.12)]"></a>
-        </li>
-        <li>
-          <a href="#" class="fa-brands fa-dribbble text-[24px] grid place-items-center w-[40px] h-[40px] rounded-full bg-[rgb(255_255_255_/_0.06)] backdrop-blur-[10px] transition transform hover:scale-105 hover:shadow-[0_6px_18px_rgba(11,89,255,0.12)]"></a>
-        </li>
-        <li>
-          <a href="#" class="fa-brands fa-instagram text-[24px] grid place-items-center w-[40px] h-[40px] rounded-full bg-[rgb(255_255_255_/_0.06)] backdrop-blur-[10px] transition transform hover:scale-105 hover:shadow-[0_6px_18px_rgba(11,89,255,0.12)]"></a>
-        </li>
-      </ul>
-
-      <ul class="flex gap-[14px] list-none p-0 m-0">
-        <li><a class="hover:underline cursor-pointer">Home</a></li>
-        <li><a class="hover:underline cursor-pointer">About</a></li>
-        <li><a class="hover:underline cursor-pointer">Portfolio</a></li>
-        <li><a class="hover:underline cursor-pointer">Skills</a></li>
-        <li><a class="hover:underline cursor-pointer">Contact</a></li>
-      </ul>
-
-      <p class="text-[12px] text-[#a2b6e1] m-0">© 2025 All rights reserved</p>
-    </section>
-  </footer>
+    <p class="text-xs text-[#93a8d6]">© 2025 All rights reserved</p>
+  </div>
+</footer>
