@@ -41,3 +41,6 @@ Route::get('/faq', function(){
 
 Route::get('/services', [ServiceController::class, 'show']);
 
+Route::get('/add-services', [ServiceController::class, 'add']);
+Route::post('/add-services', [ServiceController::class, 'addService']);
+
