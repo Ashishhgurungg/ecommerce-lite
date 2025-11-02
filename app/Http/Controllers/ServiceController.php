@@ -8,13 +8,21 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
-    public function show(){
+
+    //Display page with services
+
+    public function showServicePage()
+    {
         $services = Service::all();
-        return view('services', ["services"=> $services]);
+        $message = $services->isEmpty() ? 'No services to display' : null;
+
+        return view('services', compact('services', 'message'));
     }
 
-    public function add(){
 
+    //Displays service form
+    public function displayServiceForm()
+    {
         return view('add-services');
     }
 

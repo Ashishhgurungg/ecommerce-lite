@@ -7,9 +7,8 @@
 
     <h1 class="text-3xl font-bold underline">Services</h1>
     <p class="mt-4">Welcome to the Services page.</p>
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        @foreach ($services as $service)
+        @forelse ($services ?? [] as $service)
         <article class="bg-[#1a1f2b] p-4 rounded shadow hover:shadow-lg transition">
             @if($service->image_path && file_exists(storage_path('app/public/services/' . $service->image_path)))
               <img src="{{ asset('storage/services/' . $service->image_path) }}" 
@@ -29,7 +28,12 @@
             <h2 class="text-xl font-semibold mb-2">{{ $service->name }}</h2>
             <p class="text-[#b0b8c1]">{{ $service->description }}</p>
         </article>
-        @endforeach
+       @empty
+      <div class="text-center bg-yellow-100 text-yellow-800 px-4 py-3 rounded mb-6">
+          {{ $message ?? 'No services available.' }}
+      </div>
+      @endforelse
+
     </div>
 </main>
 
