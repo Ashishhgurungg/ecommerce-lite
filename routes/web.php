@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,9 +41,13 @@ Route::get('/faq', function(){
     return view('faq');
 });
 
-Route::get('/services', [ServiceController::class, 'showServicePage']);
+Route::get('/services', [HomeController::class, 'showServicePage']);
+
 Route::get('/add-services', [ServiceController::class, 'displayServiceForm']);
 Route::post('/add-services', [ServiceController::class, 'addService']);
+Route::get('/all-services', [ServiceController::class, 'listAllServices']);
+Route::get('/update-services/{id}', [ServiceController::class, 'showUpdateForm']);
+Route::post('/update-services', [ServiceController::class, 'updateService']);
 
 
 Route::get('/articles', [ArticleController::class, 'show']);

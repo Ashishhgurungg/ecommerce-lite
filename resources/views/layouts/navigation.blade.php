@@ -30,6 +30,9 @@
                     <x-nav-link :href="url('/add-services')" :active="request()->routeIs('add-services')" class="text-white hover:text-gray-100">
                         {{ __('Add services') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('/all-services')" :active="request()->routeIs('all-services')" class="text-white hover:text-gray-100">
+                        {{ __('All services') }}
+                    </x-nav-link>
                 </div>
             </div>
 

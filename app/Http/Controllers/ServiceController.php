@@ -8,22 +8,10 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
-
-    //Display page with services
-
-    public function showServicePage()
-    {
-        $services = Service::all();
-        $message = $services->isEmpty() ? 'No services to display' : null;
-
-        return view('services', compact('services', 'message'));
-    }
-
-
     //Displays service form
     public function displayServiceForm()
     {
-        return view('add-services');
+        return view('/services/add-services');
     }
 
     public function addService(Request $request)
@@ -52,13 +40,117 @@ class ServiceController extends Controller
         Service::create([
             'name' => $validated['name'],
             'description' => $validated['description'] ?? '',
-            'image_path' => $imageName, // only filename
+            'image_path' => $imageName ?? '', // only filename
             'price' => $validated['price'],
         ]);
 
         // 4️⃣ Redirect with success message
-        return redirect('/services')->with('success', 'Service added successfully!');
+        return redirect('/add-services')->with('success', 'Service added successfully!');
     }
+
+
+
+    public function listAllServices()
+    {
+        $services = Service::paginate(3);
+        return view('services/all-services', compact('services'));
+    }
+
+    public function showUpdateForm($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('/services/update-services', compact('service'));
+    }
+
+    // public function updateService(Request $request)
+    // {
+    //     // Validate inputs
+    //     $validated = $request->validate([
+    //         'id'          => 'required|exists:services,id',
+    //         'name'        => 'required|string|max:255',
+    //         'description' => 'nullable|string',
+    //         'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    //         'price'       => 'required|numeric|min:0',
+    //     ]);
+
+    //     // Find the service
+    //     $service = Service::findOrFail($validated['id']);
+
+    //     // Handle image upload if exists
+    //     if ($request->hasFile('image')) {
+    //         // Delete old image if exists
+    //         if ($service->image_path && \Storage::disk('public')->exists('services/' . $service->image_path)) {
+    //             \Storage::disk('public')->delete('services/' . $service->image_path);
+    //         }
+
+    //         // Store new image
+    //         $image = $request->file('image');
+    //         $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+    //         $image->storeAs('services', $imageName, 'public');
+
+    //         $service->image_path = $imageName;
+    //     }
+
+    //     // Update other details
+    //     $service->name = $validated['name'];
+    //     $service->description = $validated['description'] ?? '';
+    //     $service->price = $validated['price'];
+
+    //     // Save changes
+    //     $service->save();
+
+    //     return redirect('/dashboard')->with('success', 'Service updated successfully!');
+    // }
+    public function updateService(Request $request)
+{
+    // Validate inputs
+    $validated = $request->validate([
+        'id'          => 'required|exists:services,id',
+        'name'        => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'price'       => 'required|numeric|min:0',
+        'remove_image'=> 'nullable|boolean',
+    ]);
+
+    // Find the service
+    $service = Service::findOrFail($validated['id']);
+
+    // Handle image removal
+    if ($request->has('remove_image') && $service->image_path) {
+        if (\Storage::disk('public')->exists('services/' . $service->image_path)) {
+            \Storage::disk('public')->delete('services/' . $service->image_path);
+        }
+        $service->image_path = null;
+    }
+
+    // Handle new image upload
+    if ($request->hasFile('image')) {
+        // Delete old image if exists
+        if ($service->image_path && \Storage::disk('public')->exists('services/' . $service->image_path)) {
+            \Storage::disk('public')->delete('services/' . $service->image_path);
+        }
+
+        // Store new image
+        $image = $request->file('image');
+        $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+        $image->storeAs('services', $imageName, 'public');
+
+        $service->image_path = $imageName ?? '';
+    }
+
+    // Update other details
+    $service->name        = $validated['name'];
+    $service->description = $validated['description'] ?? '';
+    $service->price       = $validated['price'];
+
+    // Save changes
+    $service->save();
+
+    return redirect('/dashboard')->with('success', 'Service updated successfully!');
+}
+
+
 
 
 }

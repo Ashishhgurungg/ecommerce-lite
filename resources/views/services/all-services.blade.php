@@ -1,7 +1,11 @@
-@include('headerfooter.boiler')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Your Services list') }}
+        </h2>
+    </x-slot>
 <body class="flex flex-col min-h-screen bg-[#0e121c] text-[#d6dfed]">
-  @include('headerfooter.header')
-  
+
   <main class="flex-grow p-6">
 
 
@@ -25,8 +29,9 @@
                   height="300">
               @endif
 
-            <h2 class="text-xl font-semibold mb-2">{{ $service->name }}</h2>
+            <h2 class="text-blue-500 text-xl font-semibold mb-2">{{ $service->name }}</h2>
             <p class="text-[#b0b8c1]">{{ $service->description }}</p>
+            <a href="{{ url('update-services/' . $service->id) }}" class="text-blue-500 hover:underline">Edit</a>
         </article>
         
        @empty
@@ -44,7 +49,5 @@
 
 </main>
 
-  @include('headerfooter.footer')
-
 </body>
-</html>
+</x-app-layout>
