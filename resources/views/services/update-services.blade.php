@@ -24,36 +24,69 @@
             @endif
 
             <form action="{{ url('/update-services') }}" method="POST" enctype="multipart/form-data" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                @csrf
-                <input type="hidden" name="id" value="{{ $service->id }}">
+    @csrf
+    <input type="hidden" name="id" value="{{ $service->id }}">
 
-                <label class="block mb-2 font-medium">Service Name:</label>
-                <input type="text" name="name" value="{{ old('name', $service->name) }}" class="w-full p-2 border rounded" required>
+    <label class="block mb-2 font-medium">Service Name:</label>
+    <input type="text" name="name" value="{{ old('name', $service->name) }}" class="w-full p-2 border rounded" required>
 
-                <label class="block mt-4 mb-2 font-medium">Service Description:</label>
-                <textarea name="description" class="w-full p-2 border rounded" rows="3">{{ old('description', $service->description) }}</textarea>
+    <label class="block mt-4 mb-2 font-medium">Service Description:</label>
+    <textarea name="description" class="w-full p-2 border rounded" rows="3">{{ old('description', $service->description) }}</textarea>
 
-                <label class="block mt-4 mb-2 font-medium">Service Image:</label>
-                <input type="file" name="image" class="w-full p-2 border rounded">
+    <label class="block mt-4 mb-2 font-medium">Service Image:</label>
+    <input type="file" name="image" class="w-full p-2 border rounded">
 
-                @if ($service->image_path)
-                    <div class="mt-2 flex items-center gap-4">
-                        <img src="{{ asset('storage/services/' . $service->image_path) }}" alt="Service Image" class="w-32 h-32 object-cover rounded">
+    {{-- Hidden input to indicate removal; value = 1 when remove clicked --}}
+    <input type="hidden" name="remove_image" id="remove_image_field" value="0">
 
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" name="remove_image" value="1" class="form-checkbox">
-                            <span class="ml-2 text-gray-700">Remove existing image</span>
-                        </label>
-                    </div>
-                @endif
+    @if ($service->image_path)
+        <div id="current-image-block" class="mt-2 flex items-start gap-4">
+            <img id="current-image" src="{{ asset('storage/services/' . $service->image_path) }}" alt="Service Image" class="w-32 h-32 object-cover rounded border">
 
-                <label class="block mt-4 mb-2 font-medium">Price:</label>
-                <input type="number" name="price" value="{{ old('price', $service->price) }}" class="w-full p-2 border rounded" required>
-
-                <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                    Update Service
+            <div class="flex flex-col gap-2">
+                <button type="button" id="remove-image-btn" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none">
+                    Remove image
                 </button>
-            </form>
+
+                <small class="text-gray-500">Or upload a new image to replace it.</small>
+            </div>
+        </div>
+    @endif
+
+    <label class="block mt-4 mb-2 font-medium">Price:</label>
+    <input type="number" name="price" value="{{ old('price', $service->price) }}" class="w-full p-2 border rounded" required>
+
+    <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Update Service
+    </button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const removeBtn = document.getElementById('remove-image-btn');
+        const imageBlock = document.getElementById('current-image-block');
+        const removeField = document.getElementById('remove_image_field');
+
+        if (removeBtn) {
+            removeBtn.addEventListener('click', function () {
+                // set hidden field so controller knows to remove on submit
+                removeField.value = '1';
+
+                // hide image preview immediately from UI
+                if (imageBlock) {
+                    imageBlock.style.display = 'none';
+                }
+
+                // Optionally show a small "removed" message (uncomment if you want)
+                // const msg = document.createElement('div');
+                // msg.className = 'mt-2 text-sm text-gray-600';
+                // msg.innerText = 'Image will be removed when you submit the form.';
+                // removeBtn.parentNode.appendChild(msg);
+            });
+        }
+    });
+</script>
+
         </div>
     </div>
 </x-app-layout>

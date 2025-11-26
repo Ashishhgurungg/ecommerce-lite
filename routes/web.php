@@ -48,6 +48,7 @@ Route::post('/add-services', [ServiceController::class, 'addService']);
 Route::get('/all-services', [ServiceController::class, 'listAllServices']);
 Route::get('/update-services/{id}', [ServiceController::class, 'showUpdateForm']);
 Route::post('/update-services', [ServiceController::class, 'updateService']);
+Route::get('/delete-service/{id}', [ServiceController::class, 'deleteService'])->middleware(['auth', 'password.confirm']);
 
 
 Route::get('/articles', [ArticleController::class, 'show']);

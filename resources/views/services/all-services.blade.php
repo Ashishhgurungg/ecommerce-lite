@@ -11,6 +11,17 @@
 
     <h1 class="text-3xl font-bold underline">Services</h1>
     <p class="mt-4">Welcome to the Services page.</p>
+    @if (session('success'))
+        <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-6">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="bg-red-100 text-red-800 px-4 py-3 rounded mb-6">
+            {{ session('delete') }}
+        </div>
+    @endif
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         @forelse ($services ?? [] as $service)
         <article class="bg-[#1a1f2b] p-4 rounded shadow hover:shadow-lg transition">
@@ -32,6 +43,7 @@
             <h2 class="text-blue-500 text-xl font-semibold mb-2">{{ $service->name }}</h2>
             <p class="text-[#b0b8c1]">{{ $service->description }}</p>
             <a href="{{ url('update-services/' . $service->id) }}" class="text-blue-500 hover:underline">Edit</a>
+            <a href="{{ url('/delete-service/'.$service->id) }}" class="text-red-500 hover:underline ml-4">Delete</a>
         </article>
         
        @empty

@@ -19,9 +19,9 @@ class ServiceController extends Controller
         // 1️⃣ Validate form inputs
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:99999',
         ]);
 
         // 2️⃣ Handle image upload
@@ -62,95 +62,63 @@ class ServiceController extends Controller
         return view('/services/update-services', compact('service'));
     }
 
-    // public function updateService(Request $request)
-    // {
-    //     // Validate inputs
-    //     $validated = $request->validate([
-    //         'id'          => 'required|exists:services,id',
-    //         'name'        => 'required|string|max:255',
-    //         'description' => 'nullable|string',
-    //         'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-    //         'price'       => 'required|numeric|min:0',
-    //     ]);
-
-    //     // Find the service
-    //     $service = Service::findOrFail($validated['id']);
-
-    //     // Handle image upload if exists
-    //     if ($request->hasFile('image')) {
-    //         // Delete old image if exists
-    //         if ($service->image_path && \Storage::disk('public')->exists('services/' . $service->image_path)) {
-    //             \Storage::disk('public')->delete('services/' . $service->image_path);
-    //         }
-
-    //         // Store new image
-    //         $image = $request->file('image');
-    //         $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-    //         $image->storeAs('services', $imageName, 'public');
-
-    //         $service->image_path = $imageName;
-    //     }
-
-    //     // Update other details
-    //     $service->name = $validated['name'];
-    //     $service->description = $validated['description'] ?? '';
-    //     $service->price = $validated['price'];
-
-    //     // Save changes
-    //     $service->save();
-
-    //     return redirect('/dashboard')->with('success', 'Service updated successfully!');
-    // }
     public function updateService(Request $request)
-{
-    // Validate inputs
-    $validated = $request->validate([
-        'id'          => 'required|exists:services,id',
-        'name'        => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'price'       => 'required|numeric|min:0',
-        'remove_image'=> 'nullable|boolean',
-    ]);
+    {
+        // Validate inputs
+        $validated = $request->validate([
+            'id'          => 'required|exists:services,id',
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'price'       => 'required|numeric|min:0',
+            'remove_image'=> 'nullable|boolean',
+        ]);
 
-    // Find the service
-    $service = Service::findOrFail($validated['id']);
+        // Find the service
+        $service = Service::findOrFail($validated['id']);
 
-    // Handle image removal
-    if ($request->has('remove_image') && $service->image_path) {
-        if (\Storage::disk('public')->exists('services/' . $service->image_path)) {
-            \Storage::disk('public')->delete('services/' . $service->image_path);
-        }
-        $service->image_path = null;
-    }
-
-    // Handle new image upload
-    if ($request->hasFile('image')) {
-        // Delete old image if exists
-        if ($service->image_path && \Storage::disk('public')->exists('services/' . $service->image_path)) {
-            \Storage::disk('public')->delete('services/' . $service->image_path);
+        // Handle image removal
+        if ($request->has('remove_image') && $service->image_path) {
+            if (\Storage::disk('public')->exists('services/' . $service->image_path)) {
+                \Storage::disk('public')->delete('services/' . $service->image_path);
+            }
+            $service->image_path = null;
         }
 
-        // Store new image
-        $image = $request->file('image');
-        $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-        $image->storeAs('services', $imageName, 'public');
+        // Handle new image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($service->image_path && \Storage::disk('public')->exists('services/' . $service->image_path)) {
+                \Storage::disk('public')->delete('services/' . $service->image_path);
+            }
 
-        $service->image_path = $imageName ?? '';
+            // Store new image
+            $image = $request->file('image');
+            $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+            $image->storeAs('services', $imageName, 'public');
+
+            $service->image_path = $imageName ?? '';
+        }
+
+        // Update other details
+        $service->name        = $validated['name'];
+        $service->description = $validated['description'] ?? '';
+        $service->price       = $validated['price'];
+
+        // Save changes
+        $service->save();
+
+        return redirect('/all-services')->with('success', 'Service updated successfully!');
     }
 
-    // Update other details
-    $service->name        = $validated['name'];
-    $service->description = $validated['description'] ?? '';
-    $service->price       = $validated['price'];
-
-    // Save changes
-    $service->save();
-
-    return redirect('/dashboard')->with('success', 'Service updated successfully!');
-}
-
-
+    
+     public function deleteService(Request $request){
+        $id = $request->id;
+        $service = Service::find($id);
+        $service->delete();
+        return redirect('/all-services')->with('delete', 'Service Deleted Successfully');
+        
+     }
 
 
 }
