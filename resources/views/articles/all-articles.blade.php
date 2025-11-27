@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-800 dark:text-gray-200 leading-tight">
-            {{ __('Your Services list') }}
+            {{ __('Your Articles list') }}
         </h2>
     </x-slot>
 <body class="flex flex-col min-h-screen bg-[#0e121c] text-[#d6dfed]">
@@ -9,8 +9,8 @@
   <main class="flex-grow p-6">
 
 
-    <h1 class="text-3xl font-bold underline">Services</h1>
-    <p class="mt-4">Welcome to the Services page.</p>
+    <h1 class="text-3xl font-bold underline">Articles</h1>
+    <p class="mt-4">Welcome to the Articles page.</p>
     @if (session('success'))
         <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-6">
             {{ session('success') }}
@@ -23,11 +23,11 @@
     @endif
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        @forelse ($services ?? [] as $service)
+        @forelse ($articles ?? [] as $article)
         <article class="bg-[#1a1f2b] p-4 rounded shadow hover:shadow-lg transition">
-            @if($service->image_path && file_exists(storage_path('app/public/services/' . $service->image_path)))
-              <img src="{{ asset('storage/services/' . $service->image_path) }}" 
-                  alt="{{ $service->name }}" 
+            @if($article->image_path && file_exists(storage_path('app/public/articles/' . $article->image_path)))
+              <img src="{{ asset('storage/articles/' . $article->image_path) }}" 
+                  alt="{{ $article->name }}" 
                   class="w-full h-40 object-cover rounded mb-4" 
                   width="200" 
                   height="200">
@@ -40,11 +40,10 @@
                   height="300">
               @endif
 
-            <h2 class="text-blue-500 text-xl font-semibold mb-2">{{ $service->name }}</h2>
-            <p class="text-[#b0b8c1]">{{ $service->description }}</p>
-            <p class="text-blue-400">Price: ${{ $service->price }}</p>
-            <a href="{{ url('update-services/' . $service->id) }}" class="text-blue-500 hover:underline">Edit</a>
-            <a href="{{ url('/delete-service/'.$service->id) }}" class="text-red-500 hover:underline ml-4">Delete</a>
+            <h2 class="text-blue-500 text-xl font-semibold mb-2">{{ $article->title }}</h2>
+            <p class="text-[#b0b8c1]">{{ $article->description }}</p>
+            <a href="{{ url('update-articles/' . $article->id) }}" class="text-blue-500 hover:underline">Update</a>
+            <a href="{{ url('/delete-article/' . $article->id) }}" class="text-red-500 hover:underline ml-4">Delete</a>
         </article>
         
        @empty
@@ -56,7 +55,7 @@
     </div>
 
     <div class="mt-6">
-    {{ $services->links('pagination::tailwind') }}
+    {{ $articles->links('pagination::tailwind') }}
     </div>
 
 

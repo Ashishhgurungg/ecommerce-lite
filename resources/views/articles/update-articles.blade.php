@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-800 dark:text-gray-200 leading-tight">
-            {{ __('Update Services') }}
+            {{ __('Update Article') }}
         </h2>
     </x-slot>
 
@@ -23,25 +23,25 @@
                 </div>
             @endif
 
-            <form action="{{ url('/update-services') }}" method="POST" enctype="multipart/form-data" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <form action="{{ url('/update-articles') }}" method="POST" enctype="multipart/form-data" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
     @csrf
-    <input type="hidden" name="id" value="{{ $service->id }}">
+    <input type="hidden" name="id" value="{{ $article->id }}">
 
-    <label class="block mb-2 font-medium">Service Name:</label>
-    <input type="text" name="name" value="{{ old('name', $service->name) }}" class="w-full p-2 border rounded" required>
+    <label class="block mb-2 font-medium">Article Name:</label>
+    <input type="text" name="name" value="{{ old('name', $article->title) }}" class="w-full p-2 border rounded" required>
 
-    <label class="block mt-4 mb-2 font-medium">Service Description:</label>
-    <textarea name="description" class="w-full p-2 border rounded" rows="3">{{ old('description', $service->description) }}</textarea>
+    <label class="block mt-4 mb-2 font-medium">Article Description:</label>
+    <textarea name="description" class="w-full p-2 border rounded" rows="3">{{ old('description', $article->description) }}</textarea>
 
-    <label class="block mt-4 mb-2 font-medium">Service Image:</label>
+    <label class="block mt-4 mb-2 font-medium">Article Image:</label>
     <input type="file" name="image" class="w-full p-2 border rounded">
 
     {{-- Hidden input to indicate removal; value = 1 when remove clicked --}}
     <input type="hidden" name="remove_image" id="remove_image_field" value="0">
 
-    @if ($service->image_path)
+    @if ($article->image_path)
         <div id="current-image-block" class="mt-2 flex items-start gap-4">
-            <img id="current-image" src="{{ asset('storage/services/' . $service->image_path) }}" alt="Service Image" class="w-32 h-32 object-cover rounded border">
+            <img id="current-image" src="{{ asset('storage/articles/' . $article->image_path) }}" alt="article Image" class="w-32 h-32 object-cover rounded border">
 
             <div class="flex flex-col gap-2">
                 <button type="button" id="remove-image-btn" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 focus:outline-none">
@@ -53,11 +53,8 @@
         </div>
     @endif
 
-    <label class="block mt-4 mb-2 font-medium">Price:</label>
-    <input type="number" name="price" value="{{ old('price', $service->price) }}" class="w-full p-2 border rounded" required>
-
     <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Update Service
+        Update article
     </button>
 </form>
 

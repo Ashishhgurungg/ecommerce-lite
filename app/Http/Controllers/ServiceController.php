@@ -78,7 +78,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($validated['id']);
 
         // Handle image removal
-        if ($request->has('remove_image') && $service->image_path) {
+        if ($request->remove_image == 1 && $service->image_path) {
             if (\Storage::disk('public')->exists('services/' . $service->image_path)) {
                 \Storage::disk('public')->delete('services/' . $service->image_path);
             }

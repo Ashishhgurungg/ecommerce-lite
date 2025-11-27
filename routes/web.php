@@ -51,4 +51,11 @@ Route::post('/update-services', [ServiceController::class, 'updateService']);
 Route::get('/delete-service/{id}', [ServiceController::class, 'deleteService'])->middleware(['auth', 'password.confirm']);
 
 
-Route::get('/articles', [ArticleController::class, 'show']);
+Route::get('/articles', [HomeController::class, 'show']);
+
+Route::get('/article-form', [ArticleController::class, 'articleForm']);
+Route::post('/article-form', [ArticleController::class, 'createArticle']);
+Route::get('/all-articles', [ArticleController::class, 'allArticles']);
+Route::get('/delete-article/{id}', [ArticleController::class, 'deleteArticle'])->middleware(['auth', 'password.confirm']);
+Route::get('/update-articles/{id}', [ArticleController::class, 'showUpdateForm']);
+Route::post('/update-articles', [ArticleController::class, 'updateArticle']);

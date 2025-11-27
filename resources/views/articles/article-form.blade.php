@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-blue-800 dark:text-gray-200 leading-tight">
-            {{ __('Add Services') }}
+            {{ __('Add articles') }}
         </h2>
     </x-slot>
     
@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h3 class="font-semibold text-lg text-center">Add your services here</h3>
+                    <h3 class="font-semibold text-lg text-center">Add your Articles here</h3>
                 </div>
             </div>
         </div>
@@ -39,36 +39,29 @@
                     </div>
                 @endif
 
-                <form action="{{ url('/add-services') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/article-form') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        {{-- Service Name --}}
-                        <label for="name" class="block mb-2 font-medium">Service Name:</label>
+                        {{-- Article Title --}}
+                        <label for="name" class="block mb-2 font-medium">Article Title:</label>
                         <input type="text" id="name" name="name"
                                class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
                                value="{{ old('name') }}" required>
 
-                        {{-- Service Description --}}
-                        <label for="description" class="block mt-4 mb-2 font-medium">Service Description:</label>
-                        <textarea id="description" name="description"
+                        {{-- Article Description --}}
+                        <label for="description" class="block mt-4 mb-2 font-medium">Article Description:</label>
+                        <textarea id="description" name="description" required
                                   class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
                                   rows="3">{{ old('description') }}</textarea>
 
-                        {{-- Service Image --}}
-                        <label for="image" class="block mt-4 mb-2 font-medium">Service Image:</label>
+                        {{-- Article Image --}}
+                        <label for="image" class="block mt-4 mb-2 font-medium">Article Image:</label>
                         <input type="file" id="image" name="image"
                                class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200">
 
-                        {{-- Service Price --}}
-                        <label for="price" class="block mt-4 mb-2 font-medium">Service Price:</label>
-                        <input type="number" id="price" name="price"
-                               step="0.01"
-                               class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-200"
-                               value="{{ old('price') }}" required>
-
                         <button type="submit"
                                 class="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
-                            Add Service
+                            Add Article
                         </button>
                     </div>
                 </form>

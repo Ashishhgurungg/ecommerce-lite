@@ -27,6 +27,7 @@
 
             <h2 class="text-xl font-semibold mb-2">{{ $service->name }}</h2>
             <p class="text-[#b0b8c1]">{{ $service->description }}</p>
+            <p class="text-blue-400">Price: ${{ $service->price }}</p>
         </article>
         
        @empty

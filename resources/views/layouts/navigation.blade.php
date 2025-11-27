@@ -19,19 +19,22 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
-                        {{ __('Articles') }}
+                        {{ __('ALL Gallery') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
-                        {{ __('Gallery') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
-                        {{ __('Inquiries') }}
-                    </x-nav-link>
-                    <x-nav-link :href="url('/add-services')" :active="request()->routeIs('add-services')" class="text-white hover:text-gray-100">
-                        {{ __('Add services') }}
+                    <x-nav-link :href="url('/all-articles')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
+                        {{ __('All Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="url('/all-services')" :active="request()->routeIs('all-services')" class="text-white hover:text-gray-100">
                         {{ __('All services') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/add-services')" :active="request()->routeIs('add-services')" class="text-white hover:text-gray-100">
+                        {{ __('Create services') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/article-form')" :active="request()->routeIs('article-form')" class="text-white hover:text-gray-100">
+                        {{ __('Create Articles') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
+                        {{ __('Inquiries') }}
                     </x-nav-link>
                 </div>
             </div>
