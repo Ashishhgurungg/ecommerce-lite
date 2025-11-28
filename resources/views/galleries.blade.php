@@ -9,8 +9,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         @forelse ($galleries?? [] as $gallery)
         <article class="bg-[#1a1f2b] p-4 rounded shadow hover:shadow-lg transition">
-            @if($gallery->image_path && file_exists(storage_path('app/public/articles/' . $gallery->image_path)))
-              <img src="{{ asset('storage/articles/' . $gallery->image_path) }}" 
+            @if($gallery->image_path && file_exists(storage_path('app/public/galleries/' . $gallery->image_path)))
+              <img src="{{ asset('storage/galleries/' . $gallery->image_path) }}" 
                   alt="{{ $gallery->name }}" 
                   class="w-full h-40 object-cover rounded mb-4" 
                   width="200" 
