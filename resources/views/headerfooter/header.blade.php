@@ -8,7 +8,7 @@
         <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Home</a>
         <a href="{{ url('/services') }}" class="{{ request()->is('services') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Services</a>
         <a href="{{ url('/articles') }}" class="{{ request()->is('articles') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Articles</a>
-        <a href="{{ url('/gallery') }}" class="{{ request()->is('gallery') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Gallery</a>
+        <a href="{{ url('/galleries') }}" class="{{ request()->is('galleries') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Gallery</a>
         <a href="{{ url('/contact') }}" class="{{ request()->is('contact') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">Contact Us</a>
         <a href="{{ url('/faq') }}" class="{{ request()->is('faq') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">FAQ</a>
         <a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-blue-600' }}">About</a>

@@ -18,14 +18,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/all-galleries')" :active="request()->routeIs('all-galleries')" class="text-white hover:text-gray-100">
                         {{ __('ALL Gallery') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/all-articles')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/all-articles')" :active="request()->routeIs('all-articles')" class="text-white hover:text-gray-100">
                         {{ __('All Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="url('/all-services')" :active="request()->routeIs('all-services')" class="text-white hover:text-gray-100">
                         {{ __('All services') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/gallery-form')" :active="request()->routeIs('gallery-form')" class="text-white hover:text-gray-100">
+                        {{ __('Create galleries') }}
                     </x-nav-link>
                     <x-nav-link :href="url('/add-services')" :active="request()->routeIs('add-services')" class="text-white hover:text-gray-100">
                         {{ __('Create services') }}

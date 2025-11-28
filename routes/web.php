@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GalleryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,13 +28,9 @@ Route::get('/about', function(){
     return view('about');
 });
 
-route::get('/articles', function(){
-    return view('articles');
-});
 
-Route::get('/gallery', function(){
-    return view('gallery');
-});
+
+
 Route::get('/contact', function(){
     return view('contact');
 });
@@ -51,7 +48,7 @@ Route::post('/update-services', [ServiceController::class, 'updateService']);
 Route::get('/delete-service/{id}', [ServiceController::class, 'deleteService'])->middleware(['auth', 'password.confirm']);
 
 
-Route::get('/articles', [HomeController::class, 'show']);
+Route::get('/articles', [HomeController::class, 'showArticlePage']);
 
 Route::get('/article-form', [ArticleController::class, 'articleForm']);
 Route::post('/article-form', [ArticleController::class, 'createArticle']);
@@ -59,3 +56,12 @@ Route::get('/all-articles', [ArticleController::class, 'allArticles']);
 Route::get('/delete-article/{id}', [ArticleController::class, 'deleteArticle'])->middleware(['auth', 'password.confirm']);
 Route::get('/update-articles/{id}', [ArticleController::class, 'showUpdateForm']);
 Route::post('/update-articles', [ArticleController::class, 'updateArticle']);
+
+Route::get('/galleries', [HomeController::class, 'showGalleryPage']);
+
+Route::get('/gallery-form', [GalleryController::class, 'galleryForm']);
+Route::post('/gallery-form', [GalleryController::class, 'createGallery']);
+Route::get('/all-galleries', [GalleryController::class, 'allGalleries']);
+Route::get('/delete-gallery/{id}', [GalleryController::class, 'deleteGallery'])->middleware(['auth', 'password.confirm']);
+Route::get('/update-galleries/{id}', [GalleryController::class, 'showUpdateForm']);
+Route::post('/update-galleries', [GalleryController::class, 'updateGallery']);

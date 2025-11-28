@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Article;
+use App\Models\Gallery;
 
 
 class HomeController extends Controller
@@ -20,12 +21,19 @@ class HomeController extends Controller
         return view('services', compact('services', 'message'));
     }
 
-    public function show()
+    public function showArticlePage()
     {
         $articles = Article::orderBy('created_at', 'desc')->paginate(4);
         $message = $articles->isEmpty() ? 'No services to show': null;
 
         return view('articles', compact(['articles', 'message']));
+    }
+    public function showGalleryPage()
+    {
+        $galleries = Gallery::orderBy('created_at', 'desc')->paginate(4);
+        $message = $galleries->isEmpty() ? 'No galleries to show': null;
+
+        return view('galleries', compact(['galleries', 'message']));
     }
 
 }
