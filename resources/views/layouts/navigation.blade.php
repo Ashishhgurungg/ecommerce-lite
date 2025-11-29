@@ -5,11 +5,11 @@
             <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="flex items-center">
+                    <a href="{{ route('home') }}" class="flex items-center">
                         <img src="{{ asset('images/my-logo.svg') }}"
                              alt="My Logo"
                              class="block h-10 w-auto" />
-                        <span class="ms-3 font-semibold text-lg hidden sm:inline">My Site</span>
+                        <span class="ms-3 font-semibold text-lg hidden sm:inline">AI</span>
                     </a>
                 </div>
 
@@ -19,7 +19,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="url('/all-galleries')" :active="request()->is('all-galleries')" class="text-white hover:text-gray-100">
-                        {{ __('ALL Gallery') }}
+                        {{ __('All Galleries') }}
                     </x-nav-link>
                     <x-nav-link :href="url('/all-articles')" :active="request()->is('all-articles')" class="text-white hover:text-gray-100">
                         {{ __('All Articles') }}

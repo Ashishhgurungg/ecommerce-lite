@@ -4,7 +4,7 @@
     @include('headerfooter.header')
 
     <main class="flex-grow p-6 flex flex-col items-center">
-
+        
         {{-- Page Title --}}
         <h1 class="text-4xl font-bold underline mb-2 tracking-wide">Gallery</h1>
         <p class="mt-2 text-[#aab4c4] text-lg">Browse our latest collections.</p>
@@ -17,7 +17,7 @@
 
                     {{-- Image --}}
                     @if($gallery->image_path && file_exists(storage_path('app/public/galleries/' . $gallery->image_path)))
-                        <img src="{{ asset('storage/galleries/' . $gallery->image_path) }}" 
+                        <img src="{{ asset('storage/galleries/' . $gallery->image_path) }}"
                              alt="{{ $gallery->name }}"
                              class="w-full h-48 object-cover rounded-lg mb-4">
                     @else
@@ -31,12 +31,17 @@
                         {{ $gallery->title }}
                     </h2>
 
-                    {{-- Description --}}
-                    <p class="text-[#b7bfcc] text-sm leading-relaxed">
+                    {{-- Description with Read More / Read Less --}}
+                    <p class="text-[#b7bfcc] text-sm leading-relaxed overflow-hidden max-h-20 transition-all duration-300 read-more-text">
                         {{ $gallery->description }}
                     </p>
 
+                    <button class="read-more-btn text-blue-400 mt-2 hover:underline text-sm">
+                        Read More
+                    </button>
+
                 </article>
+
             @empty
                 <div class="col-span-full text-center bg-yellow-200 text-yellow-900 px-4 py-3 rounded-lg font-semibold">
                     {{ $message ?? 'No galleries available.' }}
@@ -54,5 +59,25 @@
 
     @include('headerfooter.footer')
 
+    {{-- Read More Script --}}
+    <script>
+        document.querySelectorAll(".read-more-btn").forEach((btn, index) => {
+            btn.addEventListener("click", () => {
+                const text = btn.previousElementSibling;
+
+                if (text.classList.contains("max-h-20")) {
+                    text.classList.remove("max-h-20");
+                    text.classList.add("max-h-full");
+                    btn.textContent = "Read Less";
+                } else {
+                    text.classList.add("max-h-20");
+                    text.classList.remove("max-h-full");
+                    btn.textContent = "Read More";
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
+

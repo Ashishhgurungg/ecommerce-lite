@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Service;
+use App\Models\Rating;
 
 class ServiceController extends Controller
 {
@@ -120,5 +121,30 @@ class ServiceController extends Controller
         
      }
 
+     public function rate(Request $request, $id)
+    {
+       $request->validate([
+        'rating' => 'required|integer|min:1|max:5',
+    ]);
+
+    $ip = $request->ip();
+
+    // Prevent double rating from same IP
+    $alreadyRated = Rating::where('service_id', $id)
+                          ->where('ip_address', $ip)
+                          ->exists();
+
+    if ($alreadyRated) {
+        return back()->with('error', 'You have already rated this service.');
+    }
+
+    Rating::create([
+        'service_id' => $id,
+        'rating'     => $request->rating,
+        'ip_address' => $ip,
+    ]);
+
+    return back()->with('success', 'Thank you for rating this service!');
+    }
 
 }

@@ -18,7 +18,16 @@ class HomeController extends Controller
         $services = Service::orderBy('created_at', 'desc')->paginate(6);
         $message = $services->isEmpty() ? 'No services to display' : null;
 
-        return view('services', compact('services', 'message'));
+        // Check if user already rated each service (by IP)
+        $alreadyRatedForService = [];
+
+        foreach ($services as $service) {
+            $alreadyRatedForService[$service->id] = \App\Models\Rating::where('service_id', $service->id)
+                                                    ->where('ip_address', request()->ip())
+                                                    ->exists();
+        }
+
+    return view('services', compact('services', 'message', 'alreadyRatedForService'));
     }
 
     public function showArticlePage()

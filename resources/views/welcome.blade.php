@@ -7,35 +7,36 @@
 <main class="flex-grow">
 
 
-    {{-- ================= HERO SECTION WITH AI VIDEO BACKGROUND ================= --}}
+    {{-- ================= HERO SECTION WITH AI IMAGE BACKGROUND ================= --}}
     <section class="relative w-full h-[450px] overflow-hidden">
 
-        {{-- Video Background --}}
-        <video 
-            autoplay 
-            loop 
-            muted 
-            playsinline
-            class="absolute inset-0 w-full h-full object-cover opacity-40"
+        {{-- AI Background Image --}}
+        <img 
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80"
+            class="absolute inset-0 w-full h-full object-cover opacity-50 z-0"
+            alt="AI Background"
         >
-            <source src="https://cdn.coverr.co/videos/coverr-a-room-lit-with-blue-and-purple-tech-lights-3417/1080p.mp4" type="video/mp4">
-        </video>
 
         {{-- Overlay Content --}}
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 animate-fadeIn">
+        <div class="absolute inset-0 z-10 flex flex-col items-center justify-center 
+            text-center px-4 animate-fadeIn">
+
             <h1 class="text-5xl font-extrabold drop-shadow-xl text-white tracking-wide">
                 Welcome to Our Website
             </h1>
+
             <p class="mt-4 text-lg text-gray-300 max-w-2xl">
                 Discover powerful tools, AI-driven insights, quality services, and more.
             </p>
 
             <div class="mt-6 flex gap-4">
-                <a href="/services" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white font-semibold shadow-lg">
+                <a href="/services" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 
+                    transition text-white font-semibold shadow-lg">
                     View Services
                 </a>
 
-                <a href="/contact" class="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 transition text-white font-semibold shadow-lg">
+                <a href="/contact" class="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 
+                    transition text-white font-semibold shadow-lg">
                     Contact Us
                 </a>
             </div>
@@ -51,6 +52,7 @@
         }
         .animate-fadeIn { animation: fadeIn 1.2s ease-out forwards; }
     </style>
+
 
 
     {{-- ================= FEATURE CARDS ================= --}}
@@ -128,7 +130,6 @@
 
             </div>
 
-            {{-- Pagination --}}
             <div class="swiper-pagination mt-6"></div>
 
         </div>

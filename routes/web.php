@@ -10,7 +10,7 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 Route::middleware('auth')->group(function () {
@@ -42,6 +42,9 @@ Route::get('/all-services', [ServiceController::class, 'listAllServices']);
 Route::get('/update-services/{id}', [ServiceController::class, 'showUpdateForm']);
 Route::post('/update-services', [ServiceController::class, 'updateService']);
 Route::get('/delete-service/{id}', [ServiceController::class, 'deleteService'])->middleware(['auth', 'password.confirm']);
+
+Route::post('/services/{id}/rate', [ServiceController::class, 'rate'])->name('services.rate');
+
 
 
 Route::get('/articles', [HomeController::class, 'showArticlePage']);
