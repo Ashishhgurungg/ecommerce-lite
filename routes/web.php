@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,12 +30,6 @@ Route::get('/about', function(){
     return view('about');
 });
 
-
-
-
-Route::get('/contact', function(){
-    return view('contact');
-});
 Route::get('/faq', function(){
     return view('faq');
 });
@@ -66,3 +61,10 @@ Route::get('/all-galleries', [GalleryController::class, 'allGalleries']);
 Route::get('/delete-gallery/{id}', [GalleryController::class, 'deleteGallery'])->middleware(['auth', 'password.confirm']);
 Route::get('/update-galleries/{id}', [GalleryController::class, 'showUpdateForm']);
 Route::post('/update-galleries', [GalleryController::class, 'updateGallery']);
+
+Route::get('/contact', function(){
+    return view('contact');
+});
+Route::post('/submit-contact', [ContactController::class, 'submitContactForm']);
+Route::get('/inquiries', [ContactController::class, 'listInquiries'])->middleware('auth');
+Route::get('/inquiries-delete/{id}', [ContactController::class, 'deleteInquiry'])->middleware('auth');

@@ -23,7 +23,7 @@ class HomeController extends Controller
 
     public function showArticlePage()
     {
-        $articles = Article::orderBy('created_at', 'desc')->paginate(4);
+        $articles = Article::orderBy('created_at', 'desc')->paginate(3);
         $message = $articles->isEmpty() ? 'No services to show': null;
 
         return view('articles', compact(['articles', 'message']));

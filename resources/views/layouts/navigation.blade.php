@@ -18,25 +18,25 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/all-galleries')" :active="request()->routeIs('all-galleries')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/all-galleries')" :active="request()->is('all-galleries')" class="text-white hover:text-gray-100">
                         {{ __('ALL Gallery') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/all-articles')" :active="request()->routeIs('all-articles')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/all-articles')" :active="request()->is('all-articles')" class="text-white hover:text-gray-100">
                         {{ __('All Articles') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/all-services')" :active="request()->routeIs('all-services')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/all-services')" :active="request()->is('all-services')" class="text-white hover:text-gray-100">
                         {{ __('All services') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/gallery-form')" :active="request()->routeIs('gallery-form')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/gallery-form')" :active="request()->is('gallery-form')" class="text-white hover:text-gray-100">
                         {{ __('Create galleries') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/add-services')" :active="request()->routeIs('add-services')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/add-services')" :active="request()->is('add-services')" class="text-white hover:text-gray-100">
                         {{ __('Create services') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/article-form')" :active="request()->routeIs('article-form')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/article-form')" :active="request()->is('article-form')" class="text-white hover:text-gray-100">
                         {{ __('Create Articles') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-gray-100">
+                    <x-nav-link :href="url('/inquiries')" :active="request()->is('inquiries')" class="text-white hover:text-gray-100">
                         {{ __('Inquiries') }}
                     </x-nav-link>
                 </div>
@@ -89,16 +89,16 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden bg-indigo-600">
         <div class="pt-2 pb-3 space-y-1 px-2">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->is('dashboard')" class="text-white">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->is('dashboard')" class="text-white">
                 {{ __('Articles') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->is('dashboard')" class="text-white">
                 {{ __('Gallery') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->is('dashboard')" class="text-white">
                 {{ __('Inquiries') }}
             </x-responsive-nav-link>
         </div>

@@ -1,47 +1,58 @@
 @include('headerfooter.boiler')
 <body class="flex flex-col min-h-screen bg-[#0e121c] text-[#d6dfed]">
-  @include('headerfooter.header')
-  <main class="flex-grow p-6">
 
+    @include('headerfooter.header')
 
-      <h1 class="text-3xl font-bold underline">Gallery</h1>
-      <p class="mt-4">Welcome to the Gallery page.</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        @forelse ($galleries?? [] as $gallery)
-        <article class="bg-[#1a1f2b] p-4 rounded shadow hover:shadow-lg transition">
-            @if($gallery->image_path && file_exists(storage_path('app/public/galleries/' . $gallery->image_path)))
-              <img src="{{ asset('storage/galleries/' . $gallery->image_path) }}" 
-                  alt="{{ $gallery->name }}" 
-                  class="w-full h-40 object-cover rounded mb-4" 
-                  width="200" 
-                  height="200">
-            @else
-              {{-- Fallback image if none exists --}}
-              <img src="{{ asset('images/default.jpg') }}" 
-                  alt="No image available" 
-                  class="w-full h-40 object-cover rounded mb-4" 
-                  width="400" 
-                  height="300">
-              @endif
+    <main class="flex-grow p-6 flex flex-col items-center">
 
-            <h2 class="text-xl font-semibold mb-2">{{ $gallery->title }}</h2>
-            <p class="text-[#b0b8c1]">{{ $gallery->description }}</p>
-        </article>
-        
-       @empty
-      <div class="text-center bg-yellow-100 text-yellow-800 px-4 py-3 rounded mb-6">
-          {{ $message ?? 'No galleries available.' }}
-      </div>
-      @endforelse
-      
-    </div>
+        {{-- Page Title --}}
+        <h1 class="text-4xl font-bold underline mb-2 tracking-wide">Gallery</h1>
+        <p class="mt-2 text-[#aab4c4] text-lg">Browse our latest collections.</p>
 
-    <div class="mt-6">
-    {{ $galleries->links('pagination::tailwind') }}
-    </div>
-  </main>
+        {{-- Gallery Grid --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 w-full max-w-7xl">
 
-  @include('headerfooter.footer')
+            @forelse ($galleries ?? [] as $gallery)
+                <article class="bg-[#1d2233] border border-[#2a3145] p-5 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+
+                    {{-- Image --}}
+                    @if($gallery->image_path && file_exists(storage_path('app/public/galleries/' . $gallery->image_path)))
+                        <img src="{{ asset('storage/galleries/' . $gallery->image_path) }}" 
+                             alt="{{ $gallery->name }}"
+                             class="w-full h-48 object-cover rounded-lg mb-4">
+                    @else
+                        <img src="{{ asset('images/default.jpg') }}"
+                             alt="No image"
+                             class="w-full h-48 object-cover rounded-lg mb-4">
+                    @endif
+
+                    {{-- Title --}}
+                    <h2 class="text-xl font-semibold mb-2 text-white tracking-wide">
+                        {{ $gallery->title }}
+                    </h2>
+
+                    {{-- Description --}}
+                    <p class="text-[#b7bfcc] text-sm leading-relaxed">
+                        {{ $gallery->description }}
+                    </p>
+
+                </article>
+            @empty
+                <div class="col-span-full text-center bg-yellow-200 text-yellow-900 px-4 py-3 rounded-lg font-semibold">
+                    {{ $message ?? 'No galleries available.' }}
+                </div>
+            @endforelse
+
+        </div>
+
+        {{-- Pagination --}}
+        <div class="mt-10">
+            {{ $galleries->links('pagination::tailwind') }}
+        </div>
+
+    </main>
+
+    @include('headerfooter.footer')
 
 </body>
 </html>
