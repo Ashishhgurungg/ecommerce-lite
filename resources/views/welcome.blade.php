@@ -161,6 +161,8 @@
 
 </main>
 
+@include('components.chatbot')
+
 @include('headerfooter.footer')
 
 </body>
